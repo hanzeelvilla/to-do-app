@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in post_list %}
+        <div class="todo-entry">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.body }}</p>
+            <p>Created: {{ post.date }}</p>
+            {% if post.deadline != Null %}
+                <p>Deadline: {{ post.deadline }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock content %}
