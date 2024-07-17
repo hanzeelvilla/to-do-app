@@ -9,6 +9,8 @@
             {% if post.deadline != Null %}
                 <p>Deadline: {{ post.deadline }}</p>
             {% endif %}
+            <a href="{% url "post_edit" post.pk %}">Edit</a>
+            <a href="{% url "post_delete" post.pk %}">Delete</a>
         </div>
     {% endfor %}
 {% endblock content %}
