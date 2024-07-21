@@ -26,16 +26,19 @@ class TodoTests(TestCase):
         self.assertEqual(str(self.post), "Task 1")
         
     def test_url_exists_at_correct_location_listview(self):
+        self.client.login(username="testuser", password="testuserpswd1234")
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
     
     def test_post_listview(self):
+        self.client.login(username="testuser", password="testuserpswd1234")
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test user 1 has to do smt")
         self.assertTemplateUsed(response, "home.html")
         
     def test_post_createview(self):
+        self.client.login(username="testuser", password="testuserpswd1234")
         response = self.client.post(
             reverse("post_new"),
             {
@@ -50,6 +53,7 @@ class TodoTests(TestCase):
         self.assertEqual(Post.objects.last().body, "Another task")
         
     def test_post_editview(self):
+        self.client.login(username="testuser", password="testuserpswd1234")
         response = self.client.post(
             reverse("post_edit", args="1"),
             {   
